@@ -1,0 +1,15 @@
+#cloud-config
+chpasswd:
+  expire: false
+
+ssh_pwauth: false
+
+apt_update: true
+apt_upgrade: true
+
+packages:
+  - curl
+
+runcmd:
+  - curl -fsSL https://tailscale.com/install.sh | sh
+  - tailscale up --authkey ${tskey} --ssh
